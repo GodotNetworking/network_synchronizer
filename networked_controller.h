@@ -314,9 +314,9 @@ public:
 
 	virtual void validate_script_implementation();
 	virtual void native_collect_inputs(real_t p_delta, DataBuffer &r_buffer);
-	virtual void native_controller_process(real_t p_delta, const DataBuffer &p_buffer);
-	virtual bool native_are_inputs_different(const DataBuffer &p_buffer_A, const DataBuffer &p_buffer_B);
-	virtual uint32_t native_count_input_size(const DataBuffer &p_buffer);
+	virtual void native_controller_process(real_t p_delta, DataBuffer &p_buffer);
+	virtual bool native_are_inputs_different(DataBuffer &p_buffer_A, DataBuffer &p_buffer_B);
+	virtual uint32_t native_count_input_size(DataBuffer &p_buffer);
 	virtual void native_collect_epoch_data(DataBuffer &r_buffer);
 	virtual void native_setup_interpolator(Interpolator &r_interpolator);
 	virtual void native_parse_epoch_data(Interpolator &p_interpolator, DataBuffer &r_buffer);

@@ -453,18 +453,18 @@ void NetworkedController::native_collect_inputs(real_t p_delta, DataBuffer &r_bu
 			&r_buffer);
 }
 
-void NetworkedController::native_controller_process(real_t p_delta, const DataBuffer &p_buffer) {
+void NetworkedController::native_controller_process(real_t p_delta, DataBuffer &p_buffer) {
 	call(
 			SNAME("_controller_process"),
 			p_delta,
 			&p_buffer);
 }
 
-bool NetworkedController::native_are_inputs_different(const DataBuffer &p_buffer_A, const DataBuffer &p_buffer_B) {
+bool NetworkedController::native_are_inputs_different(DataBuffer &p_buffer_A, DataBuffer &p_buffer_B) {
 	return call(SNAME("_are_inputs_different"), &p_buffer_A, &p_buffer_B);
 }
 
-uint32_t NetworkedController::native_count_input_size(const DataBuffer &p_buffer) {
+uint32_t NetworkedController::native_count_input_size(DataBuffer &p_buffer) {
 	return call(SNAME("_count_input_size"), &p_buffer);
 }
 
@@ -1281,7 +1281,7 @@ void PlayerController::process(real_t p_delta) {
 
 	// The physics process is always emitted, because we still need to simulate
 	// the character motion even if we don't store the player inputs.
-	node->native_controller_process(p_delta, node->get_inputs_buffer());
+	node->native_controller_process(p_delta, node->get_inputs_buffer_mut());
 
 	node->player_set_has_new_input(false);
 	if (accept_new_inputs) {
